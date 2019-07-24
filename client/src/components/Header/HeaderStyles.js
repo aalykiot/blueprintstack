@@ -1,12 +1,11 @@
 const styles = {
   '@import': ['url(https://fonts.googleapis.com/css?family=Arvo&display=swap)'],
   header: {
-    background: '#444857',
+    background: '#40739e',
     display: 'flex',
   },
   logo: {
     color: '#fff',
-    opacity: 0.8,
     fontFamily: `'Arvo', serif`,
     fontSize: '1.3em',
     fontWeight: 'bold',

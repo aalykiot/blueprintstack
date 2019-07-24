@@ -8,10 +8,18 @@ const styles = {
   },
   resizer: {
     background: '#444857',
-    width: 10,
+    width: 13,
     '&:hover': {
       cursor: 'col-resize',
     },
+  },
+  notInteractive: {
+    height: '100%',
+    pointerEvents: 'none',
+  },
+  isInteractive: {
+    height: '100%',
+    pointerEvents: 'auto',
   },
 };
 

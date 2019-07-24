@@ -1,14 +1,17 @@
 import React from 'react';
+import { ApolloProvider } from 'react-apollo';
 
 import Header from './components/Header';
 import Playground from './components/Playground';
 
+import client from './apollo/client';
+
 const App = () => {
   return (
-    <React.Fragment>
+    <ApolloProvider client={client}>
       <Header />
       <Playground />
-    </React.Fragment>
+    </ApolloProvider>
   );
 };
 

@@ -6,7 +6,7 @@ import styles from './HeaderStyles';
 
 const Header = ({ classes }) => {
   return (
-    <header className={classes.header}>
+    <div className={classes.header}>
       <div className={classes.logo}>BlueprintDash</div>
       <div className={classes.options}>
         <div className={classes.optionButton}>
@@ -18,7 +18,7 @@ const Header = ({ classes }) => {
           <span className={classes.optionButtonText}>Settings</span>
         </div>
       </div>
-    </header>
+    </div>
   );
 };
 
