@@ -2,7 +2,7 @@ import React from 'react';
 import injectSheet from 'react-jss';
 import { FaPlay, FaCog } from 'react-icons/fa';
 
-import styles from './styles';
+import styles from './HeaderStyles';
 
 const Header = ({ classes }) => {
   return (

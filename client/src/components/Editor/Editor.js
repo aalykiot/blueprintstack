@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CodeMirror from 'react-codemirror';
 import injectSheet from 'react-jss';
 
-import styles from './styles';
+import styles from './EditorStyles';
 
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/railscasts.css';

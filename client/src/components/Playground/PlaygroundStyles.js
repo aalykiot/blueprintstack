@@ -10,7 +10,7 @@ const styles = {
     background: '#444857',
     width: 10,
     '&:hover': {
-      cursor: 'ew-resize',
+      cursor: 'col-resize',
     },
   },
 };

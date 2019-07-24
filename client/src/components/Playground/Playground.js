@@ -5,7 +5,7 @@ import SplitPane from 'react-split-pane';
 import Editor from '../Editor';
 import Preview from '../Preview';
 
-import styles from './styles';
+import styles from './PlaygroundStyles';
 
 const Playground = ({ classes }) => {
   return (
