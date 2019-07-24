@@ -1,11 +1,16 @@
-import express from 'express';
+import { ApolloServer } from 'apollo-server';
 
-const app = express();
+import typeDefs from './graphql/typeDefs';
+import resolvers from './graphql/resolvers';
 
-app.get('/', (req, res) => {
-  res.send('Hello from NodeJS server!');
+const isProduction = process.env.NODE_ENV === 'production';
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  playground: !isProduction,
 });
 
-app.listen(8080, () => {
-  console.log('Server started on port 8080 🚀');
+server.listen().then(({ url }) => {
+  console.log(`A GraphQL API server listening on ${url}`);
 });

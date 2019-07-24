@@ -12,6 +12,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "aglio": "^2.3.0",
+    "apollo-server": "^2.7.0",
+    "graphql": "^14.4.2"
+  },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
@@ -20,8 +25,5 @@
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.1",
     "nodemon": "^1.19.1"
-  },
-  "dependencies": {
-    "express": "^4.17.1"
   }
 }

@@ -13,6 +13,7 @@
     "sourceType": "module"
   },
   "rules": {
-    "no-console": "off"
+    "no-console": "off",
+    "implicit-arrow-linebreak": "off"
   }
 }
