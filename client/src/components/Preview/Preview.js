@@ -1,21 +1,21 @@
 import React from 'react';
-import Frame from 'react-frame-component';
-import { Query } from 'react-apollo';
+// import Frame from 'react-frame-component';
+// import { Query } from 'react-apollo';
 
 import injectSheet from 'react-jss';
-import { gql } from 'apollo-boost';
+// import { gql } from 'apollo-boost';
 
 import styles from './PreviewStyles';
 
-const GET_TEMPLATE = gql`
-  query($blueprint: String!) {
-    template(blueprint: $blueprint)
-  }
-`;
+// const GET_TEMPLATE = gql`
+//   query($blueprint: String!) {
+//     template(blueprint: $blueprint)
+//   }
+// `;
 
 const Preview = ({ classes }) => (
   <div className={classes.iframeWrapper}>
-    <Query
+    {/* <Query
       query={GET_TEMPLATE}
       variables={{
         blueprint:
@@ -35,7 +35,7 @@ const Preview = ({ classes }) => (
           />
         );
       }}
-    </Query>
+    </Query> */}
   </div>
 );
 
