@@ -5,12 +5,10 @@ const styles = {
     left: 0,
     right: 0,
     bottom: 0,
-  },
-  resizer: {
-    background: '#444857',
-    width: 13,
-    '&:hover': {
-      cursor: 'col-resize',
+
+    '& .splitter-layout > .layout-splitter': {
+      width: 13,
+      background: '#444857',
     },
   },
   notInteractive: {

@@ -18,7 +18,7 @@ const Preview = ({ classes }) => {
     <div className={classes.iframeWrapper}>
       <Query query={GET_PREVIEW}>
         {({ data }) => {
-          if (!data.preview) return <div />;
+          if (!data.preview) return <div className={classes.empty} />;
           return (
             <Frame
               className={classes.iframe}

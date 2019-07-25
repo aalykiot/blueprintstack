@@ -14,9 +14,8 @@
     "react-frame-component": "^4.1.1",
     "react-icons": "^3.7.0",
     "react-jss": "^8.6.1",
-    "react-loader-spinner": "^2.3.0",
     "react-scripts": "3.0.1",
-    "react-split-pane": "^0.1.87"
+    "react-splitter-layout": "^4.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

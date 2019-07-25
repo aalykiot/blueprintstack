@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
 import injectSheet from 'react-jss';
-import SplitPane from 'react-split-pane';
+import SplitterLayout from 'react-splitter-layout';
 
 import Editor from '../Editor';
 import Preview from '../Preview';
 
 import styles from './PlaygroundStyles';
 
+import 'react-splitter-layout/lib/index.css';
+
 const Playground = ({ classes }) => {
   const [isDragging, setIsDragging] = useState(false);
 
   return (
     <div className={classes.playground}>
-      <SplitPane
-        split="vertical"
-        defaultSize="50%"
-        resizerClassName={classes.resizer}
-        onDragStarted={() => setIsDragging(true)}
-        onDragFinished={() => setIsDragging(false)}
+      <SplitterLayout
+        percentage
+        secondaryInitialSize={50}
+        primaryMinSize={0}
+        secondaryMinSize={0}
+        onDragStart={() => setIsDragging(true)}
+        onDragEnd={() => setIsDragging(false)}
       >
         <Editor />
 
@@ -28,7 +31,7 @@ const Playground = ({ classes }) => {
         >
           <Preview />
         </div>
-      </SplitPane>
+      </SplitterLayout>
     </div>
   );
 };
