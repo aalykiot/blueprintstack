@@ -1,8 +1,8 @@
 import React from 'react';
 import CodeMirror from 'react-codemirror';
 import injectSheet from 'react-jss';
-import { Query, Mutation } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 
 import styles from './EditorStyles';
 
@@ -23,6 +23,9 @@ const UPDATE_EDITOR_VALUE = gql`
 `;
 
 const Editor = ({ classes }) => {
+  const { data } = useQuery(GET_EDITOR_VALUE);
+  const [updateEditorValue] = useMutation(UPDATE_EDITOR_VALUE);
+
   const editorOptions = {
     lineNumbers: true,
     theme: 'railscasts',
@@ -30,26 +33,13 @@ const Editor = ({ classes }) => {
   };
 
   return (
-    <Query query={GET_EDITOR_VALUE}>
-      {({ data, loading, error }) => {
-        if (loading) return <div>Loading...</div>;
-        if (error) return <div>Error!</div>;
-
-        return (
-          <Mutation mutation={UPDATE_EDITOR_VALUE}>
-            {updateEditorValue => (
-              <CodeMirror
-                value={data.editorValue}
-                onChange={value => updateEditorValue({ variables: { value } })}
-                options={editorOptions}
-                autoFocus
-                className={classes.editor}
-              />
-            )}
-          </Mutation>
-        );
-      }}
-    </Query>
+    <CodeMirror
+      value={data.editorValue}
+      onChange={value => updateEditorValue({ variables: { value } })}
+      options={editorOptions}
+      autoFocus
+      className={classes.editor}
+    />
   );
 };
 

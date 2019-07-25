@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import injectSheet from 'react-jss';
-import { compose } from 'ramda';
-import { Query, withApollo } from 'react-apollo';
+import gql from 'graphql-tag';
+import { useQuery, useApolloClient } from '@apollo/react-hooks';
 import { FaPlay, FaCog } from 'react-icons/fa';
-import { gql } from 'apollo-boost';
-
-import styles from './HeaderStyles';
 
 import Button from '../Button';
+import styles from './HeaderStyles';
 
 const GET_EDITOR_VALUE = gql`
   {
@@ -27,10 +25,16 @@ const UPDATE_PREVIEW = gql`
   }
 `;
 
-const Header = ({ classes, client }) => {
+const Header = ({ classes }) => {
+  // React hooks
   const [loading, setLoading] = useState(false);
 
-  const _updatePreview = async blueprint => {
+  // Apollo hooks
+  const client = useApolloClient();
+  const { data } = useQuery(GET_EDITOR_VALUE);
+
+  // Update apollo local state
+  const updatePreview = async blueprint => {
     if (!blueprint) return;
 
     setLoading(true);
@@ -50,23 +54,16 @@ const Header = ({ classes, client }) => {
     <div className={classes.header}>
       <div className={classes.logo}>BlueprintDash</div>
       <div className={classes.options}>
-        <Query query={GET_EDITOR_VALUE}>
-          {({ data }) => (
-            <Button
-              text={loading ? 'Running...' : 'Run'}
-              icon={<FaPlay />}
-              loading={loading}
-              onClick={() => _updatePreview(data.editorValue)}
-            />
-          )}
-        </Query>
+        <Button
+          text={loading ? 'Running...' : 'Run'}
+          icon={<FaPlay />}
+          loading={loading}
+          onClick={() => updatePreview(data.editorValue)}
+        />
         <Button text="Settings" icon={<FaCog />} />
       </div>
     </div>
   );
 };
 
-export default compose(
-  injectSheet(styles),
-  withApollo
-)(Header);
+export default injectSheet(styles)(Header);

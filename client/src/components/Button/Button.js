@@ -5,14 +5,14 @@ import { ThreeBounce } from 'better-react-spinkit';
 import styles from './ButtonStyles';
 
 const Button = ({ classes, text, icon, loading, onClick }) => {
-  const _handleOnClick = () => {
+  const handleOnClick = () => {
     if (!loading && onClick) onClick();
   };
 
   return (
     <div
       className={loading ? classes.buttonLoading : classes.button}
-      onClick={_handleOnClick}
+      onClick={handleOnClick}
     >
       {loading ? (
         <ThreeBounce color="#fff" />
