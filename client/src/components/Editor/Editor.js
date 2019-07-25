@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CodeMirror from 'react-codemirror';
 import injectSheet from 'react-jss';
 import { Query, Mutation } from 'react-apollo';

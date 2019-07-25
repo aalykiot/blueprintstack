@@ -6,6 +6,7 @@ const client = new ApolloClient({
     defaults: {
       editorValue:
         '\n# GET /message\n  + Response 200 (text/plain)\n\n           Hello World!',
+      preview: null,
     },
     resolvers: {
       Mutation: {
@@ -14,15 +15,22 @@ const client = new ApolloClient({
           await cache.writeData({ data });
           return null;
         },
+        updatePreview: async (_, { value }, { cache }) => {
+          const data = { preview: value };
+          await cache.writeData({ data });
+          return null;
+        },
       },
     },
     typeDefs: `
       type Query {
         editorValue: String,
+        preview: String
       }
 
       type Mutation {
-        updateEditorValue(value: String!)
+        updateEditorValue(value: String!),
+        updatePreview(value: String!)
       }
     `,
   },

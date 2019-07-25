@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "apollo-boost": "^0.4.3",
+    "better-react-spinkit": "^2.0.4",
     "graphql": "^14.4.2",
+    "ramda": "^0.26.1",
     "react": "^16.8.6",
     "react-apollo": "^2.5.8",
     "react-codemirror": "^1.0.0",
@@ -12,6 +14,7 @@
     "react-frame-component": "^4.1.1",
     "react-icons": "^3.7.0",
     "react-jss": "^8.6.1",
+    "react-loader-spinner": "^2.3.0",
     "react-scripts": "3.0.1",
     "react-split-pane": "^0.1.87"
   },

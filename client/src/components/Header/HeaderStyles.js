@@ -19,23 +19,6 @@ const styles = {
     justifyContent: 'flex-end',
     marginRight: 10,
   },
-  optionButton: {
-    display: 'flex',
-    fontFamily: 'Arial',
-    fontWeight: 'bold',
-    color: '#fff',
-    opacity: 0.7,
-    padding: '5px',
-    margin: '0 10px',
-    borderRadius: 5,
-    '&:hover': {
-      cursor: 'pointer',
-      opacity: 1,
-    },
-  },
-  optionButtonText: {
-    marginLeft: 10,
-  },
 };
 
 export default styles;
