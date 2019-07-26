@@ -4,7 +4,9 @@ import gql from 'graphql-tag';
 import { useQuery, useApolloClient } from '@apollo/react-hooks';
 import { FaPlay, FaCog } from 'react-icons/fa';
 
-import Button from '../Button';
+import CustomButton from '../Button';
+import SettingsModal from '../SettingsModal';
+
 import styles from './HeaderStyles';
 
 const GET_EDITOR_VALUE = gql`
@@ -28,6 +30,9 @@ const UPDATE_PREVIEW = gql`
 const Header = ({ classes }) => {
   // React hooks
   const [loading, setLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
 
   // Apollo hooks
   const client = useApolloClient();
@@ -54,14 +59,19 @@ const Header = ({ classes }) => {
     <div className={classes.header}>
       <div className={classes.logo}>BlueprintDash</div>
       <div className={classes.options}>
-        <Button
+        <CustomButton
           text={loading ? 'Running...' : 'Run'}
           icon={<FaPlay />}
           loading={loading}
           onClick={() => updatePreview(data.editorValue)}
         />
-        <Button text="Settings" icon={<FaCog />} />
+        <CustomButton
+          text="Settings"
+          icon={<FaCog />}
+          onClick={() => setIsModalOpen(true)}
+        />
       </div>
+      <SettingsModal isOpen={isModalOpen} toggle={toggleModal} />
     </div>
   );
 };

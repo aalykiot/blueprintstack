@@ -7,8 +7,12 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import styles from './EditorStyles';
 
 import 'codemirror/lib/codemirror.css';
-import 'codemirror/theme/railscasts.css';
 import 'codemirror/mode/markdown/markdown';
+
+import 'codemirror/theme/railscasts.css';
+import 'codemirror/theme/dracula.css';
+import 'codemirror/theme/mdn-like.css';
+import 'codemirror/theme/neat.css';
 
 const GET_EDITOR_VALUE = gql`
   {

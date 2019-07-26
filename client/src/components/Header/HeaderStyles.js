@@ -3,6 +3,8 @@ const styles = {
   header: {
     background: '#40739e',
     display: 'flex',
+    height: 50,
+    alignItems: 'center',
   },
   logo: {
     color: '#fff',
