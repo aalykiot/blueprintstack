@@ -14,9 +14,12 @@ import 'codemirror/theme/dracula.css';
 import 'codemirror/theme/mdn-like.css';
 import 'codemirror/theme/neat.css';
 
-const GET_EDITOR_VALUE = gql`
+const GET_EDITOR = gql`
   {
     editorValue @client
+    settings {
+      editorTheme @client
+    }
   }
 `;
 
@@ -27,12 +30,12 @@ const UPDATE_EDITOR_VALUE = gql`
 `;
 
 const Editor = ({ classes }) => {
-  const { data } = useQuery(GET_EDITOR_VALUE);
+  const { data } = useQuery(GET_EDITOR);
   const [updateEditorValue] = useMutation(UPDATE_EDITOR_VALUE);
 
-  const editorOptions = {
+  const options = {
     lineNumbers: true,
-    theme: 'railscasts',
+    theme: data.settings.editorTheme,
     mode: 'markdown',
   };
 
@@ -40,7 +43,7 @@ const Editor = ({ classes }) => {
     <CodeMirror
       value={data.editorValue}
       onChange={value => updateEditorValue({ variables: { value } })}
-      options={editorOptions}
+      options={options}
       autoFocus
       className={classes.editor}
     />
