@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const GET_EDITOR = gql`
-  query GetEditor @client {
+  query GetEditor {
     editor @client
     settings @client {
       themes {
