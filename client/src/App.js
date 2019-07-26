@@ -4,7 +4,7 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import Header from './components/Header';
 import Playground from './components/Playground';
 
-import client from './apollo';
+import client from './graphql/apollo';
 
 const App = () => {
   return (

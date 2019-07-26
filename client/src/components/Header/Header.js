@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import injectSheet from 'react-jss';
-import gql from 'graphql-tag';
 import { useQuery, useApolloClient } from '@apollo/react-hooks';
 import { FaPlay, FaCog } from 'react-icons/fa';
 
@@ -9,50 +8,40 @@ import SettingsModal from '../SettingsModal';
 
 import styles from './HeaderStyles';
 
-const GET_EDITOR_VALUE = gql`
-  {
-    editorValue @client
-  }
-`;
-
-const GET_BLUEPRINT_TEMPLATE = gql`
-  query Template($blueprint: String!) {
-    template(blueprint: $blueprint)
-  }
-`;
-
-const UPDATE_PREVIEW = gql`
-  mutation UpdatePreview($value: String!) {
-    updatePreview(value: $value) @client
-  }
-`;
+import {
+  GET_EDITOR,
+  GET_BLUEPRINT_TEMPLATE,
+  UPDATE_PREVIEW,
+} from '../../graphql/queries';
 
 const Header = ({ classes }) => {
   // React hooks
-  const [loading, setLoading] = useState(false);
+  const [fetching, setFetching] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
   // Apollo hooks
   const client = useApolloClient();
-  const { data } = useQuery(GET_EDITOR_VALUE);
+  const { data } = useQuery(GET_EDITOR);
 
   // Update apollo local state
   const updatePreview = async blueprint => {
     if (!blueprint) return;
 
-    setLoading(true);
+    setFetching(true);
     const { data } = await client.query({
       query: GET_BLUEPRINT_TEMPLATE,
       variables: { blueprint },
     });
 
+    // console.log('DEBUG ==> ', data);
+
     await client.mutate({
       mutation: UPDATE_PREVIEW,
       variables: { value: data.template },
     });
-    setLoading(false);
+    setFetching(false);
   };
 
   return (
@@ -60,10 +49,10 @@ const Header = ({ classes }) => {
       <div className={classes.logo}>BlueprintDash</div>
       <div className={classes.options}>
         <CustomButton
-          text={loading ? 'Running...' : 'Run'}
+          text={fetching ? 'Running...' : 'Run'}
           icon={<FaPlay />}
-          loading={loading}
-          onClick={() => updatePreview(data.editorValue)}
+          loading={fetching}
+          onClick={() => updatePreview(data.editor)}
         />
         <CustomButton
           text="Settings"

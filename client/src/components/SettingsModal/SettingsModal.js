@@ -1,6 +1,5 @@
-import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import React, { useState } from 'react';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import {
   Button,
   Modal,
@@ -12,20 +11,26 @@ import {
   Input,
 } from 'reactstrap';
 
-import { editorThemes, previewThemes } from './themes';
+import { GET_SETTINGS, UPDATE_SETTINGS } from '../../graphql/queries';
 
-const GET_SETTINGS = gql`
-  {
-    settings {
-      editorTheme @client
-      previewTheme @client
-    }
-  }
-`;
+import { editorThemes, previewThemes } from './themes';
 
 const SettingsModal = ({ isOpen, toggle }) => {
   // Apollo hooks
   const { data } = useQuery(GET_SETTINGS);
+  const [updateSettings] = useMutation(UPDATE_SETTINGS);
+
+  // React hooks
+  const [settings, setSettings] = useState({
+    themes: {
+      editor: data.settings.themes.editor,
+      preview: data.settings.themes.preview,
+      __typename: 'Themes',
+    },
+    __typename: 'Settings',
+  });
+
+  const handleOnSave = () => updateSettings({ variables: { settings } });
 
   return (
     <Modal isOpen={isOpen} toggle={toggle}>
@@ -36,7 +41,16 @@ const SettingsModal = ({ isOpen, toggle }) => {
           <Input
             type="select"
             name="editor-theme"
-            defaultValue={data.settings.editorTheme}
+            defaultValue={data.settings.themes.editor}
+            onChange={e =>
+              setSettings({
+                ...settings,
+                themes: {
+                  ...settings.themes,
+                  editor: e.target.value,
+                },
+              })
+            }
           >
             {editorThemes.map(theme => (
               <option value={theme.value} key={theme.value}>
@@ -50,7 +64,16 @@ const SettingsModal = ({ isOpen, toggle }) => {
           <Input
             type="select"
             name="preview-theme"
-            defaultValue={data.settings.previewTheme}
+            defaultValue={data.settings.themes.preview}
+            onChange={e =>
+              setSettings({
+                ...settings,
+                themes: {
+                  ...settings.themes,
+                  preview: e.target.value,
+                },
+              })
+            }
           >
             {previewThemes.map(theme => (
               <option value={theme.value} key={theme.value}>
@@ -61,7 +84,9 @@ const SettingsModal = ({ isOpen, toggle }) => {
         </FormGroup>
       </ModalBody>
       <ModalFooter>
-        <Button color="success">Save</Button>
+        <Button color="success" onClick={handleOnSave}>
+          Save
+        </Button>
       </ModalFooter>
     </Modal>
   );

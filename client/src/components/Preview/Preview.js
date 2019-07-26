@@ -2,15 +2,10 @@ import React from 'react';
 import Frame, { FrameContextConsumer } from 'react-frame-component';
 import injectSheet from 'react-jss';
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 
 import styles from './PreviewStyles';
 
-const GET_PREVIEW = gql`
-  {
-    preview @client
-  }
-`;
+import { GET_PREVIEW } from '../../graphql/queries';
 
 const Preview = ({ classes }) => {
   // Apollo hooks

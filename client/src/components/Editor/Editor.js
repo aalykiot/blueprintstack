@@ -1,7 +1,6 @@
 import React from 'react';
 import CodeMirror from 'react-codemirror';
 import injectSheet from 'react-jss';
-import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 import styles from './EditorStyles';
@@ -14,35 +13,22 @@ import 'codemirror/theme/dracula.css';
 import 'codemirror/theme/mdn-like.css';
 import 'codemirror/theme/neat.css';
 
-const GET_EDITOR = gql`
-  {
-    editorValue @client
-    settings {
-      editorTheme @client
-    }
-  }
-`;
-
-const UPDATE_EDITOR_VALUE = gql`
-  mutation UpdateEditorValue($value: String!) {
-    updateEditorValue(value: $value) @client
-  }
-`;
+import { GET_EDITOR, UPDATE_EDITOR } from '../../graphql/queries';
 
 const Editor = ({ classes }) => {
   const { data } = useQuery(GET_EDITOR);
-  const [updateEditorValue] = useMutation(UPDATE_EDITOR_VALUE);
+  const [updateEditor] = useMutation(UPDATE_EDITOR);
 
   const options = {
     lineNumbers: true,
-    theme: data.settings.editorTheme,
+    theme: data.settings.themes.editor,
     mode: 'markdown',
   };
 
   return (
     <CodeMirror
-      value={data.editorValue}
-      onChange={value => updateEditorValue({ variables: { value } })}
+      value={data.editor}
+      onChange={value => updateEditor({ variables: { value } })}
       options={options}
       autoFocus
       className={classes.editor}
