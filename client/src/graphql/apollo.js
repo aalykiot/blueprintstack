@@ -15,7 +15,7 @@ const defaultState = {
 };
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql',
+  uri: process.env.REACT_APP_GRAPHQL_URI,
   clientState: {
     defaults: defaultState,
     resolvers: {
