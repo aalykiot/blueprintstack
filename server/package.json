@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index",
-    "dev": "nodemon src/index",
+    "start": "node ./build/app",
+    "dev": "nodemon ./src/index",
+    "build": "babel src -d build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
@@ -15,12 +16,13 @@
   "dependencies": {
     "aglio": "^2.3.0",
     "apollo-server": "^2.7.0",
-    "graphql": "^14.4.2",
-    "@babel/register": "^7.5.5"
+    "graphql": "^14.4.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.1",
