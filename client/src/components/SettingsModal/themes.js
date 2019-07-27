@@ -23,8 +23,8 @@ export const previewThemes = [
     value: 'default',
   },
   {
-    label: 'Flaty',
-    value: 'flaty',
+    label: 'Flatly',
+    value: 'flatly',
   },
   {
     label: 'Slate',

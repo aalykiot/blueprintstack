@@ -18,8 +18,8 @@ export const UPDATE_EDITOR = gql`
 `;
 
 export const GET_BLUEPRINT_TEMPLATE = gql`
-  query GetBlueprintTemplate($blueprint: String!) {
-    template(blueprint: $blueprint)
+  query GetBlueprintTemplate($blueprint: String!, $theme: String) {
+    template(blueprint: $blueprint, theme: $theme)
   }
 `;
 
@@ -36,7 +36,7 @@ export const UPDATE_PREVIEW = gql`
 `;
 
 export const GET_SETTINGS = gql`
-  query GetThemes {
+  query GetSettings {
     settings @client {
       themes {
         editor

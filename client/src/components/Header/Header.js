@@ -10,6 +10,7 @@ import styles from './HeaderStyles';
 
 import {
   GET_EDITOR,
+  GET_SETTINGS,
   GET_BLUEPRINT_TEMPLATE,
   UPDATE_PREVIEW,
 } from '../../graphql/queries';
@@ -24,6 +25,7 @@ const Header = ({ classes }) => {
   // Apollo hooks
   const client = useApolloClient();
   const { data } = useQuery(GET_EDITOR);
+  const { data: data2 } = useQuery(GET_SETTINGS);
 
   // Update apollo local state
   const updatePreview = async blueprint => {
@@ -32,10 +34,8 @@ const Header = ({ classes }) => {
     setFetching(true);
     const { data } = await client.query({
       query: GET_BLUEPRINT_TEMPLATE,
-      variables: { blueprint },
+      variables: { blueprint, theme: data2.settings.themes.preview },
     });
-
-    // console.log('DEBUG ==> ', data);
 
     await client.mutate({
       mutation: UPDATE_PREVIEW,

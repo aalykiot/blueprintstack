@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import injectSheet from 'react-jss';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import {
   Button,
@@ -15,7 +16,7 @@ import { GET_SETTINGS, UPDATE_SETTINGS } from '../../graphql/queries';
 
 import { editorThemes, previewThemes } from './themes';
 
-const SettingsModal = ({ isOpen, toggle }) => {
+const SettingsModal = ({ classes, isOpen, toggle }) => {
   // Apollo hooks
   const { data } = useQuery(GET_SETTINGS);
   const [updateSettings] = useMutation(UPDATE_SETTINGS);
@@ -30,7 +31,10 @@ const SettingsModal = ({ isOpen, toggle }) => {
     __typename: 'Settings',
   });
 
-  const handleOnSave = () => updateSettings({ variables: { settings } });
+  const handleOnSave = () => {
+    updateSettings({ variables: { settings } });
+    toggle();
+  };
 
   return (
     <Modal isOpen={isOpen} toggle={toggle}>
@@ -81,6 +85,9 @@ const SettingsModal = ({ isOpen, toggle }) => {
               </option>
             ))}
           </Input>
+          <strong className={classes.reminder}>
+            *You need to re-run your code in order this setting to take effect
+          </strong>
         </FormGroup>
       </ModalBody>
       <ModalFooter>
@@ -92,4 +99,10 @@ const SettingsModal = ({ isOpen, toggle }) => {
   );
 };
 
-export default SettingsModal;
+const styles = {
+  reminder: {
+    fontSize: '8pt',
+  },
+};
+
+export default injectSheet(styles)(SettingsModal);
