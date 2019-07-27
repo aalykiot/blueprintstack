@@ -8,6 +8,9 @@ const PORT = process.env.PORT || 4000;
 const isProduction = process.env.NODE_ENV === 'production';
 
 const server = new ApolloServer({
+  cors: {
+    origin: '*',
+  },
   typeDefs,
   resolvers,
   playground: !isProduction,
