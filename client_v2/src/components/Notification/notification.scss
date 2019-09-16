@@ -1,0 +1,30 @@
+.notification {
+  padding: 15px;
+  border-radius: 5px;
+  background-color: #1c2128;
+  border: 3px solid #575fcf;
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  z-index: 1000;
+  color: #fff;
+  width: 350px;
+  font-size: 10pt;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.notification-title {
+  font-weight: bold;
+}
+
+.notification-body {
+  margin-top: 5px;
+  line-height: 1.4;
+}
+
+.notification-footer {
+  margin-top: 5px;
+}
