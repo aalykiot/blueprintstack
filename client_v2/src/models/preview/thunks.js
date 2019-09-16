@@ -14,8 +14,11 @@ export const getPreviewAsync = () => {
         theme: state.settings.theme.preview,
       })
       .end((err, res) => {
-        if (err) console.error(err);
-        dispatch(updatePreview(res.body.html));
+        if (err) {
+          console.error(err);
+        } else {
+          dispatch(updatePreview(res.body.html));
+        }
       });
   };
 };
