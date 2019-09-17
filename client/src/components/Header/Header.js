@@ -1,68 +1,46 @@
 import React, { useState } from 'react';
-import injectSheet from 'react-jss';
-import { useQuery, useApolloClient } from '@apollo/react-hooks';
-import { FaPlay, FaCog } from 'react-icons/fa';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import Modal from '../Modal';
+import NavButton from '../NavButton';
+import { getPreviewAsync } from '../../models/preview/thunks';
+import './header.scss';
 
-import CustomButton from '../Button';
-import SettingsModal from '../SettingsModal';
-
-import styles from './HeaderStyles';
-
-import {
-  GET_EDITOR,
-  GET_SETTINGS,
-  GET_BLUEPRINT_TEMPLATE,
-  UPDATE_PREVIEW,
-} from '../../graphql/queries';
-
-const Header = ({ classes }) => {
-  // React hooks
-  const [fetching, setFetching] = useState(false);
+const Header = ({ previewLoading, getPreviewAsync }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
-  // Apollo hooks
-  const client = useApolloClient();
-  const { data } = useQuery(GET_EDITOR);
-  const { data: data2 } = useQuery(GET_SETTINGS);
-
-  // Update apollo local state
-  const updatePreview = async blueprint => {
-    if (!blueprint) return;
-
-    setFetching(true);
-    const { data } = await client.query({
-      query: GET_BLUEPRINT_TEMPLATE,
-      variables: { blueprint, theme: data2.settings.themes.preview },
-    });
-
-    await client.mutate({
-      mutation: UPDATE_PREVIEW,
-      variables: { value: data.template },
-    });
-    setFetching(false);
-  };
-
   return (
-    <div className={classes.header}>
-      <div className={classes.logo}>BlueprintDash</div>
-      <div className={classes.options}>
-        <CustomButton
-          text={fetching ? 'Running...' : 'Run'}
-          icon={<FaPlay />}
-          loading={fetching}
-          onClick={() => updatePreview(data.editor)}
+    <div className="header">
+      <div className="header_logo">Blueprint Dash</div>
+      <div className="header_options">
+        <NavButton
+          content="Run"
+          icon="play"
+          loading={previewLoading}
+          handleClick={getPreviewAsync}
         />
-        <CustomButton
-          text="Settings"
-          icon={<FaCog />}
-          onClick={() => setIsModalOpen(true)}
+        <NavButton
+          content="Settings"
+          icon="setting"
+          handleClick={toggleModal}
         />
       </div>
-      <SettingsModal isOpen={isModalOpen} toggle={toggleModal} />
+      <Modal isOpen={isModalOpen} toggleModal={toggleModal} />
     </div>
   );
 };
 
-export default injectSheet(styles)(Header);
+const mapStateToProps = state => ({
+  previewLoading: state.preview.loading,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getPreviewAsync: bindActionCreators(getPreviewAsync, dispatch),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header);

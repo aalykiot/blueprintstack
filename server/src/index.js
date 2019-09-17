@@ -1,2 +1,1 @@
-require('@babel/register'); // eslint-disable-line
-require('./app');
+require('./app.js');

@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
-import injectSheet from 'react-jss';
 import SplitterLayout from 'react-splitter-layout';
-
 import Editor from '../Editor';
 import Preview from '../Preview';
 
-import styles from './PlaygroundStyles';
-
 import 'react-splitter-layout/lib/index.css';
+import './playground.scss';
 
-const Playground = ({ classes }) => {
+const Playground = () => {
   const [isDragging, setIsDragging] = useState(false);
 
   return (
-    <div className={classes.playground}>
+    <div className="playground">
       <SplitterLayout
         percentage
         secondaryInitialSize={50}
@@ -23,10 +20,11 @@ const Playground = ({ classes }) => {
         onDragEnd={() => setIsDragging(false)}
       >
         <Editor />
-
         <div
           className={
-            isDragging ? classes.notInteractive : classes.isInteractive
+            isDragging
+              ? 'playground_not_interactive'
+              : 'playground_is_interactive'
           }
         >
           <Preview />
@@ -36,4 +34,4 @@ const Playground = ({ classes }) => {
   );
 };
 
-export default injectSheet(styles)(Playground);
+export default Playground;

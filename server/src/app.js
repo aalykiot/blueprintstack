@@ -1,21 +1,37 @@
-import { ApolloServer } from 'apollo-server';
-
-import typeDefs from './graphql/typeDefs';
-import resolvers from './graphql/resolvers';
+const express = require('express');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const aglio = require('aglio');
+const boom = require('@hapi/boom');
+const cors = require('cors');
 
 const PORT = process.env.PORT || 4000;
 
-const isProduction = process.env.NODE_ENV === 'production';
+const app = express();
 
-const server = new ApolloServer({
-  cors: {
-    origin: '*',
-  },
-  typeDefs,
-  resolvers,
-  playground: !isProduction,
+app.use(cors());
+app.use(morgan('dev'));
+app.use(bodyParser());
+
+app.get('/', (req, res) => {
+  res.send('Server Works! 🖖');
 });
 
-server.listen(PORT).then(({ url }) => {
-  console.log(`A GraphQL API server listening on ${url}`);
+app.post('/blueprint', (req, res) => {
+  const { blueprint, theme } = req.body;
+
+  aglio.render(
+    blueprint,
+    {
+      themeVariables: theme || 'default'
+    },
+    (err, html) => {
+      if (err) res.send(boom.boomify(err));
+      res.send({ html });
+    }
+  );
+});
+
+app.listen(PORT, () => {
+  console.log(`API server listening on port ${PORT}`);
 });
