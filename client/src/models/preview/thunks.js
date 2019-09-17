@@ -7,8 +7,10 @@ export const getPreviewAsync = () => {
 
     dispatch(updatePreviewAsync());
 
+    const url = `${process.env.REACT_APP_SERVER_URL}/blueprint`;
+
     superagent
-      .post(process.env.REACT_APP_SERVER_URL)
+      .post(url)
       .send({
         blueprint: state.editor.value,
         theme: state.settings.theme.preview,
