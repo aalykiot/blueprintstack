@@ -5,4 +5,32 @@
   height: 100vh;
 }
 
+/* overriding react-splitter-layout styles */
+
+.splitter-layout {
+  position: relative !important;
+}
+
+.splitter-layout > .layout-splitter {
+  width: 13px !important;
+  background-color: #333642 !important;
+}
+
+.splitter-layout-loader {
+  width: 13px !important;
+  background-color: #333642 !important;
+}
+
+/* overriding codemirror styles */
+
+.CodeMirror {
+  height: 100% !important;
+}
+
+/* custom classes */
+
+.empty-preview {
+  background: radial-gradient(#fff, #ced6e0);
+}
+
 @tailwind utilities;
