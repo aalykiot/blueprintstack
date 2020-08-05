@@ -16,9 +16,15 @@
     "start": "next start"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "next": "^9.5.1",
+    "randomcolor": "^0.6.2",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-hook-form": "^6.3.0",
+    "react-icons": "^3.10.0",
+    "recoil": "^0.0.10",
+    "uuid": "^8.3.0"
   },
   "devDependencies": {
     "babel-plugin-module-resolver": "^4.0.0",
