@@ -1,0 +1,23 @@
+{
+  "name": "blueprintstack",
+  "version": "2.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexalikiotis/blueprintstack.git"
+  },
+  "keywords": [],
+  "author": "Alex Alikiotis <alexalikiotis5@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "next": "^9.5.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
