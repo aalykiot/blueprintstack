@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import randomcolor from 'randomcolor';
 import { useForm } from 'react-hook-form';
 import { IoIosCloseCircle } from 'react-icons/io';
@@ -13,10 +14,9 @@ const CSS = {
 };
 
 const BlueprintForm = ({ handleHideForm }) => {
+  const [color] = useState(randomcolor({ format: 'hex', luminosity: 'light' }));
   const { register, handleSubmit, errors } = useForm();
   const create = useCreateBlueprint();
-
-  const color = randomcolor({ format: 'hex', luminosity: 'light' });
 
   const handleOnSubmit = ({ name }) => {
     create({ name, color, code: `# ${name}\n` });
