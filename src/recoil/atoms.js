@@ -7,9 +7,12 @@ const defaultState = [
     name: 'Getting started',
     color: '#c04af6',
     code: `FORMAT: 1A
+
 # GET /message
 + Response 200 (text/plain)
-    Hello World!`,
+  
+      Hello World!
+    `,
   },
 ];
 

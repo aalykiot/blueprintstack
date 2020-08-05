@@ -32,6 +32,19 @@ export const useCreateBlueprint = () => {
   };
 };
 
+export const useUpdateBlueprint = () => {
+  const [blueprints, setBlueprints] = useRecoilState(blueprintsState);
+  const selected = useRecoilValue(selectedBlueprintState);
+
+  return newValue => {
+    setBlueprints(
+      blueprints.map((blueprint, index) =>
+        index === selected ? { ...blueprint, code: newValue } : blueprint
+      )
+    );
+  };
+};
+
 export const useDeleteBlueprint = () => {
   const count = useRecoilValue(blueprintsCount);
   const [blueprints, setBlueprints] = useRecoilState(blueprintsState);
