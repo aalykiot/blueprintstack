@@ -28,8 +28,10 @@ const CodeEditor = () => {
   );
 
   const handleOnBeforeChange = (editor, data, value) => {
-    setValue(value);
-    updateBlueprintDebounced(value);
+    if (selected !== -1) {
+      setValue(value);
+      updateBlueprintDebounced(value);
+    }
   };
 
   return (
