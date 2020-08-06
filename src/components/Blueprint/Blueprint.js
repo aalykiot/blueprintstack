@@ -1,5 +1,4 @@
 import classnames from 'classnames';
-import { useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { useSelectBlueprint, useDeleteBlueprint } from 'src/recoil/hooks';
 
@@ -13,17 +12,15 @@ const CSS = {
 };
 
 const Blueprint = ({ blueprint, isSelected }) => {
-  const [selectLocked, setSelectLocked] = useState(false);
   const select = useSelectBlueprint();
   const remove = useDeleteBlueprint();
 
   const handleOnSelect = () => {
-    if (!selectLocked) {
-      select(blueprint);
-    }
+    select(blueprint);
   };
 
-  const handleOnDelete = () => {
+  const handleOnDelete = e => {
+    e.stopPropagation();
     remove(blueprint);
   };
 
@@ -48,12 +45,7 @@ const Blueprint = ({ blueprint, isSelected }) => {
         {blueprint.name}
       </span>
       {isSelected && (
-        <IoMdClose
-          className={CSS.close}
-          onMouseEnter={() => setSelectLocked(true)}
-          onMouseLeave={() => setSelectLocked(false)}
-          onClick={handleOnDelete}
-        />
+        <IoMdClose className={CSS.close} onClick={handleOnDelete} />
       )}
     </div>
   );
