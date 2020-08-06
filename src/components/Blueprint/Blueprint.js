@@ -1,6 +1,7 @@
+import { useContext } from 'react';
 import classnames from 'classnames';
 import { IoMdClose } from 'react-icons/io';
-import { useSelectBlueprint, useDeleteBlueprint } from 'src/recoil/hooks';
+import { BlueprintsContext } from 'src/context/blueprints';
 
 const CSS = {
   blueprint:
@@ -12,16 +13,15 @@ const CSS = {
 };
 
 const Blueprint = ({ blueprint, isSelected }) => {
-  const select = useSelectBlueprint();
-  const remove = useDeleteBlueprint();
+  const { select, remove } = useContext(BlueprintsContext);
 
   const handleOnSelect = () => {
-    select(blueprint);
+    select(blueprint.id);
   };
 
   const handleOnDelete = e => {
     e.stopPropagation();
-    remove(blueprint);
+    remove(blueprint.id);
   };
 
   return (

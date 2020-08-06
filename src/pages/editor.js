@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 import Sidebar from 'src/components/Sidebar';
 import SplitPaneLoader from 'src/components/SplitPaneLoader';
+import { BlueprintsProvider } from 'src/context/blueprints';
 
 const SplitPane = dynamic(() => import('src/components/SplitPane'), {
   ssr: false,
@@ -13,10 +14,12 @@ const CSS = {
 
 const EditorPage = () => {
   return (
-    <div className={CSS.container}>
-      <Sidebar />
-      <SplitPane />
-    </div>
+    <BlueprintsProvider>
+      <div className={CSS.container}>
+        <Sidebar />
+        <SplitPane />
+      </div>
+    </BlueprintsProvider>
   );
 };
 

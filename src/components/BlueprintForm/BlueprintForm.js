@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import randomcolor from 'randomcolor';
 import { useForm } from 'react-hook-form';
 import { IoIosCloseCircle } from 'react-icons/io';
-import { useCreateBlueprint } from 'src/recoil/hooks';
+import { BlueprintsContext } from 'src/context/blueprints';
 
 const CSS = {
   form: 'w-full mb-4',
@@ -16,7 +16,7 @@ const CSS = {
 const BlueprintForm = ({ handleHideForm }) => {
   const [color] = useState(randomcolor({ format: 'hex', luminosity: 'light' }));
   const { register, handleSubmit, errors } = useForm();
-  const create = useCreateBlueprint();
+  const { create } = useContext(BlueprintsContext);
 
   const handleOnSubmit = ({ name }) => {
     create({ name, color, code: `# ${name}\n` });

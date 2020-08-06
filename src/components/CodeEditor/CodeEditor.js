@@ -1,9 +1,7 @@
 import _ from 'lodash';
-import { useState, useEffect, useCallback } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useState, useEffect, useCallback, useContext } from 'react';
 import { Controlled as CodeMirror } from 'react-codemirror2';
-import { blueprintsState, selectedBlueprintState } from 'src/recoil/atoms';
-import { useUpdateBlueprint } from 'src/recoil/hooks';
+import { BlueprintsContext } from 'src/context/blueprints';
 import 'codemirror/mode/markdown/markdown';
 
 const CSS = {
@@ -11,18 +9,16 @@ const CSS = {
 };
 
 const CodeEditor = () => {
-  const blueprints = useRecoilValue(blueprintsState);
-  const selected = useRecoilValue(selectedBlueprintState);
+  const { blueprints, selected, update } = useContext(BlueprintsContext);
   const [value, setValue] = useState('');
 
   useEffect(() => {
     setValue(blueprints[selected]?.code);
   }, [selected]);
 
-  const updateBlueprint = useUpdateBlueprint();
-  const updateBlueprintDebounced = useCallback(
+  const updateDebounced = useCallback(
     _.debounce(value => {
-      updateBlueprint(value);
+      update(value);
     }, 300),
     []
   );
@@ -30,7 +26,7 @@ const CodeEditor = () => {
   const handleOnBeforeChange = (editor, data, value) => {
     if (selected !== -1) {
       setValue(value);
-      updateBlueprintDebounced(value);
+      updateDebounced(value);
     }
   };
 

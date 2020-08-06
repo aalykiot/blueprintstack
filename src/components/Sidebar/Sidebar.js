@@ -15,7 +15,7 @@ const CSS = {
 };
 
 const Sidebar = () => {
-  const [showForm, setShowForm] = useState(false);
+  const [isFormOpen, setIsFormOpen] = useState(false);
   return (
     <div className={CSS.sidebar}>
       <div className={CSS.header}>
@@ -26,10 +26,10 @@ const Sidebar = () => {
         <IoMdAdd
           className={CSS.headerPlusIcon}
           size={19}
-          onClick={() => setShowForm(true)}
+          onClick={() => setIsFormOpen(true)}
         />
       </div>
-      <TreeView showForm={showForm} setShowForm={setShowForm} />
+      <TreeView isFormOpen={isFormOpen} setIsFormOpen={setIsFormOpen} />
       <div className={CSS.footer}>
         <IoLogoGithub className={CSS.github} size={25} />
         <span className={CSS.version}>v2.0.0</span>
