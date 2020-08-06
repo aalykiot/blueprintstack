@@ -8,7 +8,7 @@ const initState = {
       id: uuid(),
       name: 'Getting started',
       color: '#c04af6',
-      code: `FORMAT: 1A\n\n # GET /message\n + Response 200 (text/plain)\n\n\t\t Hello World!`,
+      code: `# GET /message\n + Response 200 (text/plain)\n\n\t\t Hello World!`,
     },
   ],
   selected: 0,
@@ -56,6 +56,7 @@ export const BlueprintsProvider = ({ children }) => {
 
   const contextValue = useMemo(() => ({
     blueprints: state.blueprints,
+    blueprint: state.blueprints[state.selected],
     selected: state.selected,
     select,
     create,
