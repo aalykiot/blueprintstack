@@ -52,7 +52,7 @@ const IndexPage = () => {
       </div>
       <div className="width-constraint">
         <img
-          src="/static/showcase.png"
+          src="/static/images/showcase.png"
           alt="showcase"
           className="rounded border-t border-gray-700"
         />
