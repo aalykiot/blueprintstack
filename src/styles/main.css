@@ -41,6 +41,11 @@
 
 /* custom classes */
 
+.width-constraint {
+  width: 1000px;
+  margin: 0 auto;
+}
+
 .empty-preview {
   background: radial-gradient(#fff, #ced6e0);
 }
