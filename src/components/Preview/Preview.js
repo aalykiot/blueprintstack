@@ -11,7 +11,7 @@ const CSS = {
 };
 
 const fetcher = blueprint => {
-  return fetch('http://localhost:3000/api/preview', {
+  return fetch('https://blueprint-dash-server.herokuapp.com/blueprint', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
