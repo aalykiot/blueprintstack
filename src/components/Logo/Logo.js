@@ -2,8 +2,8 @@ const Logo = ({ width, height }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height={height || 'auto'}
-      width={width || 'auto'}
+      height={height || '100%'}
+      width={width || '100%'}
       style={{ isolation: 'isolate' }}
       viewBox="0 0 829 266"
     >
