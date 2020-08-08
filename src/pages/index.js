@@ -21,7 +21,7 @@ const IndexPage = () => {
       <div className={CSS.header}>
         <div className={CSS.headerContent}>
           <a href="/">
-            <Logo width={130} />
+            <Logo width={230} />
           </a>
           <div className={CSS.social}>
             <IoLogoGithub className={CSS.github} size={30} />
@@ -33,7 +33,7 @@ const IndexPage = () => {
           Experiment with API Blueprint like a PRO
         </h1>
         <p className={CSS.heroDescription} style={{ maxWidth: 800 }}>
-          Draftic helps you experiment with the awesome{' '}
+          BlueprintStack helps you experiment with the awesome{' '}
           <a
             href="https://apiblueprint.org/"
             target="_blank"

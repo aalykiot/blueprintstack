@@ -1,5 +1,5 @@
 {
-  "name": "draftic",
+  "name": "blueprint.stack",
   "version": "2.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexalikiotis/draftic.git"
+    "url": "git+https://github.com/alexalikiotis/blueprint.stack.git"
   },
   "scripts": {
     "dev": "next dev",
