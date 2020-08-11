@@ -1,7 +1,11 @@
 module.exports = {
   purge: ['./src/components/**/*.js', './src/pages/**/*.js'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        grayer: '#202836',
+      },
+    },
   },
   variants: {},
   plugins: [],

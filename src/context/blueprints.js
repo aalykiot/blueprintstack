@@ -7,7 +7,7 @@ const initState = {
     {
       id: uuid(),
       name: 'Getting started',
-      color: '#c04af6',
+      color: '#667EEA',
       code: `# GET /message\n + Response 200 (text/plain)\n\n\t\t Hello World!`,
     },
   ],

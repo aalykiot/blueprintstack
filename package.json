@@ -31,7 +31,6 @@
     "react-query": "^2.5.13",
     "react-spinners-kit": "^1.9.1",
     "react-splitter-layout": "^4.0.0",
-    "react-top-loading-bar": "^2.0.0",
     "uuid": "^8.3.0"
   },
   "devDependencies": {

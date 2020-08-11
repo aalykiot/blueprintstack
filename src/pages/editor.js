@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic';
 import { ReactQueryConfigProvider } from 'react-query';
+import Seo from 'src/layouts/Seo';
 import Sidebar from 'src/components/Sidebar';
 import SplitPaneLoader from 'src/components/SplitPaneLoader';
 import { BlueprintsProvider } from 'src/context/blueprints';
@@ -19,14 +20,16 @@ const queryConfig = {
 
 const EditorPage = () => {
   return (
-    <ReactQueryConfigProvider config={queryConfig}>
-      <BlueprintsProvider>
-        <div className={CSS.container}>
-          <Sidebar />
-          <SplitPane />
-        </div>
-      </BlueprintsProvider>
-    </ReactQueryConfigProvider>
+    <Seo title="BlueprintStack - Editor">
+      <ReactQueryConfigProvider config={queryConfig}>
+        <BlueprintsProvider>
+          <div className={CSS.container}>
+            <Sidebar />
+            <SplitPane />
+          </div>
+        </BlueprintsProvider>
+      </ReactQueryConfigProvider>
+    </Seo>
   );
 };
 
