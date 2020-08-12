@@ -31,7 +31,13 @@ const Sidebar = () => {
       </div>
       <TreeView isFormOpen={isFormOpen} setIsFormOpen={setIsFormOpen} />
       <div className={CSS.footer}>
-        <IoLogoGithub className={CSS.github} size={25} />
+        <a
+          href="https://github.com/alexalikiotis/blueprintstack"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <IoLogoGithub className={CSS.github} size={25} />
+        </a>
         <span className={CSS.version}>v2.0.0</span>
       </div>
     </div>
