@@ -1,11 +1,17 @@
+import merge from 'lodash/merge';
+
 export const read = () => {
-  return JSON.parse(localStorage.getItem('blueprint_stack_data'));
+  return JSON.parse(localStorage.getItem('blueprint_stack'));
 };
 
 export const save = data => {
-  localStorage.setItem('blueprint_stack_data', JSON.stringify(data));
+  const snapshot = read();
+  localStorage.setItem(
+    'blueprint_stack',
+    JSON.stringify(merge(snapshot, data))
+  );
 };
 
 export const clear = () => {
-  localStorage.removeItem('blueprint_stack_data');
+  localStorage.removeItem('blueprint_stack');
 };
