@@ -1,22 +1,33 @@
 import produce from 'immer';
-import { createContext, useReducer, useMemo } from 'react';
+import { createContext, useReducer, useMemo, useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
+import * as storage from 'src/utils/storage';
+
+const defaultBlueprints = [
+  {
+    id: uuid(),
+    name: 'Getting started',
+    color: '#667EEA',
+    code: `# GET /message\n + Response 200 (text/plain)\n\n\t\t Hello World!`,
+  },
+];
 
 const initState = {
-  blueprints: [
-    {
-      id: uuid(),
-      name: 'Getting started',
-      color: '#667EEA',
-      code: `# GET /message\n + Response 200 (text/plain)\n\n\t\t Hello World!`,
-    },
-  ],
-  selected: 0,
+  blueprints: [],
+  selected: -1,
 };
 
 const blueprintsReducer = (state, action) =>
   produce(state, draft => {
     switch (action.type) {
+      case 'LOAD_BLUEPRINTS': {
+        const data = storage.read();
+        draft.blueprints = data?.blueprints
+          ? data.blueprints
+          : defaultBlueprints;
+        draft.selected = 0;
+        break;
+      }
       case 'CREATE_BLUEPRINT': {
         draft.blueprints.push({ id: uuid(), ...action.payload });
         draft.selected = draft.blueprints.length - 1;
@@ -48,6 +59,18 @@ export const BlueprintsContext = createContext();
 
 export const BlueprintsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(blueprintsReducer, initState);
+
+  // load blueprints to state on componentDidMount
+  useEffect(() => {
+    dispatch({ type: 'LOAD_BLUEPRINTS' });
+  }, []);
+
+  // update local storage on blueprints updates
+  useEffect(() => {
+    if (state.blueprints.length > 0) {
+      storage.save({ blueprints: state.blueprints });
+    }
+  }, [state.blueprints]);
 
   const select = payload => dispatch({ type: 'SELECT_BLUEPRINT', payload });
   const create = payload => dispatch({ type: 'CREATE_BLUEPRINT', payload });

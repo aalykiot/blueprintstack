@@ -36,7 +36,9 @@ const Preview = ({ customClassName }) => {
   );
 
   useEffect(() => {
-    refetch();
+    if (blueprint) {
+      refetch();
+    }
   }, [blueprint]);
 
   return (
