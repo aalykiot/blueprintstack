@@ -7,11 +7,11 @@ import PreviewFrame from 'src/components/PreviewFrame';
 const CSS = {
   default: 'empty-preview flex h-full',
   loading: 'empty-preview h-full flex flex-col items-center justify-center',
-  error: 'h-full bg-red-600 text-white p-2',
+  error: 'h-full bg-red-600 text-white p-2 font-semibold',
 };
 
 const fetcher = blueprint => {
-  return fetch('https://blueprint-dash-server.herokuapp.com/blueprint', {
+  return fetch('/api/preview', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -20,9 +20,15 @@ const fetcher = blueprint => {
       blueprint: blueprint?.code,
     }),
   })
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw Error(response.statusText);
+      }
+      return response.json();
+    })
     .then(data => data?.html)
     .catch(err => {
+      console.log('ERROR => ', err);
       throw err;
     });
 };
@@ -40,6 +46,8 @@ const Preview = ({ customClassName }) => {
       refetch();
     }
   }, [blueprint]);
+
+  console.log(error);
 
   return (
     <div className={customClassName}>
