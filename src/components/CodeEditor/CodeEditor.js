@@ -39,7 +39,7 @@ const CodeEditor = () => {
         mode: 'markdown',
         theme: 'ayu-mirage',
         lineNumbers: true,
-        lineWrapping: true,
+        lineWrapping: false,
         showCursorWhenSelecting: true,
         autofocus: true,
       }}
