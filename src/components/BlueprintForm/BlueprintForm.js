@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useEffect, useCallback, useContext } from 'react';
 import randomcolor from 'randomcolor';
 import { useForm } from 'react-hook-form';
 import { IoIosCloseCircle } from 'react-icons/io';
@@ -22,6 +22,19 @@ const BlueprintForm = ({ handleHideForm }) => {
     create({ name, color, code: `# ${name}\n` });
     handleHideForm();
   };
+
+  const escFunction = useCallback(event => {
+    if (event.keyCode === 27) {
+      handleHideForm();
+    }
+  });
+
+  useEffect(() => {
+    document.addEventListener('keydown', escFunction, false);
+    return () => {
+      document.removeEventListener('keydown', escFunction, false);
+    };
+  });
 
   return (
     <form onSubmit={handleSubmit(handleOnSubmit)} className={CSS.form}>
