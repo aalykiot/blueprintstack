@@ -1,7 +1,7 @@
 import produce from 'immer';
 import { createContext, useReducer, useMemo, useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
-import * as storage from 'src/utils/storage';
+import * as storage from 'src/lib/storage';
 
 const defaultBlueprints = [
   {

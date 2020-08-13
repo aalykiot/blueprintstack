@@ -1,4 +1,4 @@
-import * as aglio from 'src/utils/aglio';
+import * as aglio from 'src/lib/aglio';
 
 export default async (req, res) => {
   try {
