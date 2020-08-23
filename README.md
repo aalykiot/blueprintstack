@@ -2,9 +2,9 @@
 
 An awesome API blueprint playground for new people to experiment on.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT 'MIT License')
-![GitHub repo size](https://img.shields.io/github/repo-size/alexalikiotis/blueprintstack)
-[![Generic badge](https://img.shields.io/badge/framework-next.js-blue.svg)](https://nextjs.org/)
+[![License](https://img.shields.io/github/license/alexalikiotis/blueprintstack?style=flat-square)](https://opensource.org/licenses/MIT)
+![GitHub Repo Size](https://img.shields.io/github/repo-size/alexalikiotis/blueprintstack?style=flat-square)
+[![Framework](https://img.shields.io/badge/framework-next.js-blue.svg?style=flat-square)](https://nextjs.org/)
 
 </div>
 
@@ -12,7 +12,7 @@ An awesome API blueprint playground for new people to experiment on.
 
 BlueprintStack helps people to experiment with the awesome API blueprint specification easily. No account required, multiple blueprint files, automatic preview updates and, saving your blueprints locally.
 
-BlueprintStack is the next version of a platform known as <a href="https://blueprint-dash.surge.sh">blueprint-dash</a>. The idea behind this rewrite was that I always felt that blueprint-dash lacked some functionality that I thought it was a must have for a platform like this. Also I thought that some parts of the old playground could be rewritten with better **react** patterns.
+BlueprintStack is an improved version of the previous playground I build about a year ago called <a href="https://blueprint-dash.surge.sh">blueprint-dash</a>. The idea behind the rewrite is that blueprint-dash was missing some key features that I thought would be nice to have. Also, some react patterns could be better implemented and I really wanted to try out Next.js for something not that complicated.
 
 ## Features
 
@@ -33,4 +33,4 @@ This is a playground for quick access to the spec. If you are serious about work
 
 <b>Visit <a href="https://blueprintstack.io">blueprintstack</a> now! ❤️</b>
 
-If you like this project, do leave a star and because I'm not planning to heavily maintain this project please feel free to submit any PR that fixes a bug or improves the platform 🙏
+If you like this project, do leave a star and because I'm not planning to heavily maintain this project feel free to submit any PR that fixes a bug or improves the playground. 🙏
