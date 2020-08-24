@@ -47,25 +47,23 @@ const Preview = ({ customClassName }) => {
     }
   }, [blueprint]);
 
-  console.log(error);
-
   return (
     <div className={customClassName}>
       {!blueprint ? (
         <div className={CSS.default} />
       ) : (
         <>
-          {error && !isLoading && (
+          {error && (
             <div className={CSS.error}>
               <p>{error.message}</p>
             </div>
           )}
-          {isLoading && (
+          {!error && isLoading && (
             <div className={CSS.loading}>
               <FillSpinner size={50} color="#333642" />
             </div>
           )}
-          {data && <PreviewFrame html={data} />}
+          {!error && data && <PreviewFrame html={data} />}
         </>
       )}
     </div>
