@@ -9,16 +9,16 @@ const CSS = {
 };
 
 const CodeEditor = () => {
-  const { blueprints, selected, update } = useContext(BlueprintsContext);
+  const { blueprint, selected, update } = useContext(BlueprintsContext);
   const [value, setValue] = useState('');
 
   useEffect(() => {
-    setValue(blueprints[selected]?.code);
+    setValue(blueprint?.code);
   }, [selected]);
 
   const updateDebounced = useCallback(
-    _.debounce(value => {
-      update(value);
+    _.debounce((id, value) => {
+      update(id, value);
     }, 300),
     []
   );
@@ -26,7 +26,7 @@ const CodeEditor = () => {
   const handleOnBeforeChange = (editor, data, value) => {
     if (selected !== -1) {
       setValue(value);
-      updateDebounced(value);
+      updateDebounced(blueprint.id, value);
     }
   };
 

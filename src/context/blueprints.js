@@ -1,7 +1,7 @@
 import produce from 'immer';
 import { createContext, useReducer, useMemo, useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
-import * as storage from 'src/lib/storage';
+import * as database from 'src/lib/database';
 
 const defaultBlueprints = [
   {
@@ -21,15 +21,12 @@ const blueprintsReducer = (state, action) =>
   produce(state, draft => {
     switch (action.type) {
       case 'LOAD_BLUEPRINTS': {
-        const data = storage.read();
-        draft.blueprints = data?.blueprints
-          ? data.blueprints
-          : defaultBlueprints;
+        draft.blueprints = action.payload;
         draft.selected = 0;
         break;
       }
       case 'CREATE_BLUEPRINT': {
-        draft.blueprints.push({ id: uuid(), ...action.payload });
+        draft.blueprints.push(action.payload);
         draft.selected = draft.blueprints.length - 1;
         break;
       }
@@ -60,22 +57,36 @@ export const BlueprintsContext = createContext();
 export const BlueprintsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(blueprintsReducer, initState);
 
-  // load blueprints to state on componentDidMount
+  // load blueprints to state on start up
   useEffect(() => {
-    dispatch({ type: 'LOAD_BLUEPRINTS' });
+    (async () => {
+      const blueprints = await database.getAllBlueprints();
+      if (blueprints.length === 0) {
+        await database.saveBlueprint(defaultBlueprints[0]);
+        dispatch({ type: 'LOAD_BLUEPRINTS', payload: defaultBlueprints });
+      } else {
+        dispatch({ type: 'LOAD_BLUEPRINTS', payload: blueprints });
+      }
+    })();
   }, []);
 
-  // update local storage on blueprints updates
-  useEffect(() => {
-    if (state.blueprints.length > 0) {
-      storage.save({ blueprints: state.blueprints });
-    }
-  }, [state.blueprints]);
-
   const select = payload => dispatch({ type: 'SELECT_BLUEPRINT', payload });
-  const create = payload => dispatch({ type: 'CREATE_BLUEPRINT', payload });
-  const remove = payload => dispatch({ type: 'REMOVE_BLUEPRINT', payload });
-  const update = payload => dispatch({ type: 'UPDATE_BLUEPRINT', payload });
+
+  const create = async payload => {
+    payload.id = uuid(); // generate a uuid for the blueprint
+    dispatch({ type: 'CREATE_BLUEPRINT', payload });
+    await database.saveBlueprint(payload);
+  };
+
+  const remove = async payload => {
+    dispatch({ type: 'REMOVE_BLUEPRINT', payload });
+    await database.deleteBlueprint(payload);
+  };
+
+  const update = async (id, payload) => {
+    dispatch({ type: 'UPDATE_BLUEPRINT', payload });
+    await database.updateBlueprint(id, payload);
+  };
 
   const contextValue = useMemo(() => ({
     blueprints: state.blueprints,

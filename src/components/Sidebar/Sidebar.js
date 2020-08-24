@@ -14,7 +14,7 @@ const CSS = {
   github: 'cursor-pointer hover:text-gray-400',
 };
 
-const Sidebar = () => {
+const Sidebar = ({ appVersion }) => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   return (
     <div className={CSS.sidebar}>
@@ -38,7 +38,7 @@ const Sidebar = () => {
         >
           <IoLogoGithub className={CSS.github} size={25} />
         </a>
-        <span className={CSS.version}>v2.0.0</span>
+        <span className={CSS.version}>{`v${appVersion}`}</span>
       </div>
     </div>
   );

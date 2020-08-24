@@ -18,19 +18,35 @@ const queryConfig = {
   queries: { refetchOnWindowFocus: false },
 };
 
-const EditorPage = () => {
+const EditorPage = ({ appVersion }) => {
   return (
     <Seo title="BlueprintStack - Editor">
       <ReactQueryConfigProvider config={queryConfig}>
         <BlueprintsProvider>
           <div className={CSS.container}>
-            <Sidebar />
+            <Sidebar appVersion={appVersion} />
             <SplitPane />
           </div>
         </BlueprintsProvider>
       </ReactQueryConfigProvider>
     </Seo>
   );
+};
+
+export const getStaticProps = async () => {
+  // require nodejs modules
+  const fs = require('fs');
+  const path = require('path');
+
+  // read package.json file
+  const jsonData = fs.readFileSync(path.join(process.env.PWD, 'package.json'), {
+    encoding: 'utf-8',
+  });
+  const { version } = JSON.parse(jsonData);
+
+  return {
+    props: { appVersion: version },
+  };
 };
 
 export default EditorPage;
