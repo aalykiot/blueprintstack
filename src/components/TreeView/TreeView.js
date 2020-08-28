@@ -20,6 +20,7 @@ const TreeView = ({ isFormOpen, setIsFormOpen }) => {
           key={blueprint.id}
           blueprint={blueprint}
           isSelected={index === selected}
+          showDeleteIcon={blueprints.length > 1}
         />
       ))}
     </ul>

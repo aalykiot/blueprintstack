@@ -12,7 +12,7 @@ const CSS = {
   close: 'cursor-pointer text-gray-600 hover:text-gray-400',
 };
 
-const Blueprint = ({ blueprint, isSelected }) => {
+const Blueprint = ({ blueprint, isSelected, showDeleteIcon }) => {
   const { select, remove } = useContext(BlueprintsContext);
 
   const handleOnSelect = () => {
@@ -44,7 +44,7 @@ const Blueprint = ({ blueprint, isSelected }) => {
       >
         {blueprint.name}
       </span>
-      {isSelected && (
+      {showDeleteIcon && isSelected && (
         <IoMdClose className={CSS.close} onClick={handleOnDelete} />
       )}
     </div>
