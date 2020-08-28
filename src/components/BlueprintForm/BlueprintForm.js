@@ -8,7 +8,7 @@ const CSS = {
   form: 'w-full mb-4',
   inputContainer: 'flex items-center bg-gray-800 rounded-sm border',
   input:
-    'bg-transparent w-full px-2 py-1 outline-none rounded text-sm text-gray-600 focus:text-white',
+    'bg-transparent w-full min-w-0 px-2 py-1 outline-none rounded text-sm text-gray-600 focus:text-white',
   closeIcon: 'mr-1 cursor-pointer text-gray-600 hover:text-white',
   error: 'block text-red-700 text-xs w-full my-1 px-2',
 };
