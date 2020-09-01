@@ -1,4 +1,7 @@
-![BlueprintStack Header](./media/repo-purple.png)
+<div style="text-align: center">
+
+  <img src="./media/repo-purple.png" width="400" />
+  <br /><br />
 
 An awesome API blueprint playground for new people to experiment on.
 
