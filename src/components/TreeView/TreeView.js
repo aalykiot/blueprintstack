@@ -13,9 +13,7 @@ const TreeView = ({ isFormOpen, setIsFormOpen }) => {
 
   return (
     <>
-      {isFormOpen && (
-        <BlueprintForm handleHideForm={() => setIsFormOpen(false)} />
-      )}
+      {isFormOpen && <BlueprintForm onHideForm={() => setIsFormOpen(false)} />}
       <OverlayScrollbarsComponent
         options={{ scrollbars: { autoHide: 'scroll' } }}
         className={CSS.list}

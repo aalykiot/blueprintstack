@@ -1,7 +1,8 @@
-import { useState, useEffect, useCallback, useContext } from 'react';
+import { useState, useContext } from 'react';
 import randomcolor from 'randomcolor';
 import { useForm } from 'react-hook-form';
 import { IoIosCloseCircle } from 'react-icons/io';
+import useOnEscapeKeyDown from 'src/hooks/onEscapeKeyDown';
 import { BlueprintsContext } from 'src/context/blueprints';
 
 const CSS = {
@@ -13,28 +14,17 @@ const CSS = {
   error: 'block text-red-700 text-xs w-full my-1 px-2',
 };
 
-const BlueprintForm = ({ handleHideForm }) => {
+const BlueprintForm = ({ onHideForm }) => {
   const [color] = useState(randomcolor({ format: 'hex', luminosity: 'light' }));
   const { register, handleSubmit, errors } = useForm();
   const { create } = useContext(BlueprintsContext);
 
+  useOnEscapeKeyDown(true, onHideForm);
+
   const handleOnSubmit = ({ name }) => {
     create({ name, color, code: `# ${name}\n` });
-    handleHideForm();
+    onHideForm();
   };
-
-  const escFunction = useCallback(event => {
-    if (event.keyCode === 27) {
-      handleHideForm();
-    }
-  });
-
-  useEffect(() => {
-    document.addEventListener('keydown', escFunction, false);
-    return () => {
-      document.removeEventListener('keydown', escFunction, false);
-    };
-  });
 
   return (
     <form onSubmit={handleSubmit(handleOnSubmit)} className={CSS.form}>
@@ -51,7 +41,7 @@ const BlueprintForm = ({ handleHideForm }) => {
         <IoIosCloseCircle
           className={CSS.closeIcon}
           size={22}
-          onClick={handleHideForm}
+          onClick={onHideForm}
         />
       </div>
       {errors.name && <span className={CSS.error}>name is required</span>}
