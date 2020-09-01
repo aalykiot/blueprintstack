@@ -2,7 +2,9 @@ import { useContext, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { BlueprintsContext } from 'src/context/blueprints';
 import { FillSpinner } from 'react-spinners-kit';
+
 import PreviewFrame from 'src/components/PreviewFrame';
+import PreviewDownloadButton from 'src/components/PreviewDownloadButton';
 
 const CSS = {
   default: 'empty-preview flex h-full',
@@ -63,7 +65,12 @@ const Preview = ({ customClassName }) => {
               <FillSpinner size={50} color="#333642" />
             </div>
           )}
-          {!error && data && <PreviewFrame html={data} />}
+          {!error && data && (
+            <>
+              <PreviewFrame html={data} />
+              <PreviewDownloadButton html={data} name={blueprint?.name} />
+            </>
+          )}
         </>
       )}
     </div>
