@@ -1,4 +1,4 @@
-<div style="text-align: center">
+<div align="center">
 
   <img src="./media/repo-purple.png" width="400" />
   <br /><br />
