@@ -1,23 +1,22 @@
 import Link from 'next/link';
-import { IoMdStar } from 'react-icons/io';
 import Seo from 'src/layouts/Seo';
 import Logo from 'src/components/Logo';
 
 const CSS = {
-  topBar: 'bg-indigo-500 h-2',
-  headerWrapper: 'h-16 flex items-center text-gray-300',
-  header: 'container flex items-center justify-between mx-auto px-16',
-  github: 'font-mplus-1p font-bold ',
-  hero: `mt-24 container mx-auto max-w-3xl xl:max-w-4xl text-center font-mplus-1p`,
-  heroTitle: 'font-black text-5xl text-gray-300',
-  heroSubtitle: 'font-medium text-xl text-gray-600 mt-12',
-  heroActions: 'mt-16 flex items-center justify-center',
-  startButton: `bg-indigo-500 text-gray-300 font-extrabold px-16 py-4 rounded cursor-pointer mr-8 hover:bg-indigo-600`,
-  starButton: `bg-gray-800 hover:bg-grayer text-gray-300 font-extrabold px-16 py-4 rounded flex items-center`,
-  starButtonIcon: 'mr-2',
-  showcaseWrapper: 'mt-24 container mx-auto px-16',
-  showcase: 'rounded',
-  footer: 'font-mplus-1p mt-20 mb-8 container mx-auto px-16 text-center',
+  topBar: 'bg-indigo-600 h-2',
+  header:
+    'h-16 text-gray-300 mx-auto flex items-center justify-center w-full sm:justify-between sm:max-w-screen-sm lg:max-w-4xl xl:max-w-6xl',
+  github: 'font-bold hidden sm:block',
+  hero: `mt-12 mx-auto text-center w-full sm:max-w-xl sm:mt-24 lg:max-w-2xl xl:max-w-4xl`,
+  heroTitle: 'font-black text-3xl text-gray-300 sm:text-4xl lg:text-5xl',
+  heroSubtitle: 'font-medium text-base text-gray-600 mt-8 lg:text-xl',
+  buttonContainer: 'mt-12 flex items-center justify-center',
+  button: `bg-indigo-600 text-gray-300 font-extrabold px-16 py-4 rounded cursor-pointer hover:bg-indigo-500`,
+  showcase:
+    'mt-24 mx-auto w-full hidden sm:block sm:max-w-xl lg:max-w-3xl xl:max-w-5xl',
+  showcaseImage: 'rounded-lg border border-gray-800',
+  footer:
+    'mt-20 mb-8 mx-auto text-center w-full sm:max-w-xl lg:max-w-2xl xl:max-w-4xl',
   footerText: 'text-gray-600 text-sm',
   footerUsername: 'font-semibold text-gray-300',
 };
@@ -25,6 +24,7 @@ const CSS = {
 const globalStyles = `
   body {
     background-color: #1A202C;
+    font-family: 'Open Sans', sans-serif;
     color: #ffffff;
   }
 `;
@@ -36,19 +36,18 @@ const IndexPage = () => {
       styles={globalStyles}
     >
       <div className={CSS.topBar} />
-      <div className={CSS.headerWrapper}>
-        <div className={CSS.header}>
-          <a href="/">
-            <Logo width={200} />
-          </a>
-          <a
-            href="https://github.com/alexalikiotis/blueprintstack"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <div className={CSS.github}>GitHub</div>
-          </a>
-        </div>
+      <div className={CSS.header}>
+        <a href="/">
+          <Logo width={200} />
+        </a>
+        <a
+          href="https://github.com/alexalikiotis/blueprintstack"
+          target="_blank"
+          rel="noreferrer"
+          className={CSS.github}
+        >
+          <span>GitHub</span>
+        </a>
       </div>
       <div className={CSS.hero}>
         <h1 className={CSS.heroTitle}>An awesome API blueprint playground</h1>
@@ -57,24 +56,14 @@ const IndexPage = () => {
           specification easily. No account required, multiple blueprint files,
           automatic preview updates and, saving your blueprints locally.
         </p>
-        <div className={CSS.heroActions}>
+        <div className={CSS.buttonContainer}>
           <Link href="/editor">
-            <div className={CSS.startButton}>GET STARTED</div>
+            <div className={CSS.button}>GET STARTED</div>
           </Link>
-          <a
-            href="https://github.com/alexalikiotis/blueprintstack/stargazers"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <div className={CSS.starButton}>
-              <IoMdStar size={22} className={CSS.starButtonIcon} />
-              <span>STAR</span>
-            </div>
-          </a>
         </div>
       </div>
-      <div className={CSS.showcaseWrapper}>
-        <img className={CSS.showcase} src="/static/images/showcase.png" />
+      <div className={CSS.showcase}>
+        <img className={CSS.showcaseImage} src="/static/images/showcase.png" />
       </div>
       <div className={CSS.footer}>
         <span className={CSS.footerText}>

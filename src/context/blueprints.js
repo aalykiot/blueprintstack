@@ -7,7 +7,7 @@ const defaultBlueprints = [
   {
     id: uuid(),
     name: 'Getting started',
-    color: '#667EEA',
+    color: '#5a67d8',
     code: `# GET /message\n + Response 200 (text/plain)\n\n\t\t Hello World!`,
   },
 ];
