@@ -1,6 +1,8 @@
 import Link from 'next/link';
+
 import Seo from 'src/layouts/Seo';
 import Logo from 'src/components/Logo';
+import Image from 'src/components/Image';
 
 const CSS = {
   topBar: 'bg-indigo-600 h-2',
@@ -14,7 +16,7 @@ const CSS = {
   button: `bg-indigo-600 text-gray-300 font-extrabold px-16 py-4 rounded cursor-pointer hover:bg-indigo-500`,
   showcase:
     'mt-24 mx-auto w-full hidden sm:block sm:max-w-xl lg:max-w-3xl xl:max-w-5xl',
-  showcaseImage: 'rounded-lg border border-gray-800',
+  showcaseImage: 'rounded-lg border border-gray-800 w-full h-auto',
   footer:
     'mt-20 mb-8 mx-auto text-center w-full sm:max-w-xl lg:max-w-2xl xl:max-w-4xl',
   footerText: 'text-gray-600 text-sm',
@@ -63,7 +65,11 @@ const IndexPage = () => {
         </div>
       </div>
       <div className={CSS.showcase}>
-        <img className={CSS.showcaseImage} src="/static/images/showcase.png" />
+        <Image
+          src={require('images/showcase.png?webp')}
+          placeholder={require('images/showcase.png?lqip')}
+          className={CSS.showcaseImage}
+        />
       </div>
       <div className={CSS.footer}>
         <span className={CSS.footerText}>

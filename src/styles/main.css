@@ -55,5 +55,9 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+.blur-image {
+  filter: blur(25px);
+}
+
 @tailwind components;
 @tailwind utilities;
