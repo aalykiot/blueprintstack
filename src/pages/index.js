@@ -5,7 +5,7 @@ import Logo from 'src/components/Logo';
 import Image from 'src/components/Image';
 
 const CSS = {
-  topBar: 'bg-indigo-600 h-2',
+  topBar: 'bg-indigo-600 h-1',
   header:
     'h-16 text-gray-300 mx-auto flex items-center justify-center w-full sm:justify-between sm:max-w-screen-sm lg:max-w-4xl xl:max-w-6xl',
   github: 'font-bold hidden sm:block',
