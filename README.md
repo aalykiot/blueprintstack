@@ -34,6 +34,6 @@ This is a playground for quick access to the spec. If you are serious about work
 
 ##
 
-<b>Visit <a href="https://blueprintstack.io">blueprintstack</a> now! ❤️</b>
+<b>Visit <a href="https://blueprintstack.vercel.app/">blueprintstack</a> now! ❤️</b>
 
 If you like this project, do leave a star and because I'm not planning to heavily maintain this project feel free to submit any PR that fixes a bug or improves the playground. 🙏
