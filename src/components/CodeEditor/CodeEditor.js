@@ -5,7 +5,7 @@ import { BlueprintsContext } from 'src/context/blueprints';
 import 'codemirror/mode/markdown/markdown';
 
 const CSS = {
-  editor: 'flex-1 h-full text-lg',
+  editor: 'flex-1 h-full text-base',
 };
 
 const CodeEditor = () => {
