@@ -12,8 +12,10 @@ const CSS = {
   error: 'h-full bg-red-600 text-white p-2 font-semibold',
 };
 
+const API_ENDPOINT = process.env.API_ENDPOINT || 'http://localhost:8080';
+
 const fetcher = blueprint => {
-  return fetch('/api/preview', {
+  return fetch(`${API_ENDPOINT}/api/preview`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

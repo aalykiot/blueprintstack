@@ -17,7 +17,6 @@
     "start-local": "next start"
   },
   "dependencies": {
-    "aglio": "^2.3.0",
     "classnames": "^2.2.6",
     "codemirror": "^5.56.0",
     "dexie": "^3.0.2",

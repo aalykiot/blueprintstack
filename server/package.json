@@ -1,0 +1,24 @@
+{
+  "name": "blueprintstack-server",
+  "version": "1.0.0",
+  "description": "The backend server of the blueprintstack platform",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "Alex Alikiotis <alexalikiotis5@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "aglio": "^2.3.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.9"
+  }
+}
